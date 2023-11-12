@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="restaurantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DiningTable">
+          <Key>
+            <PropertyRef Name="TableID" />
+          </Key>
+          <Property Name="TableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="TableNumber" Type="int" />
+          <Property Name="AvailableSeats" Type="int" />
+          <Property Name="OccupiedSeats" Type="int" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableID" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalCost" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="OrderDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="IsAvailable" Type="bit" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__DiningTab__Waite__2E1BDC42">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="DiningTable">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__UserID__286302EC">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__35BCFE0A">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Produ__36B12243">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__TableID__31EC6D26">
+          <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiningTable">
+              <PropertyRef Name="TableID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="restaurantModelStoreContainer">
+          <EntitySet Name="DiningTable" EntityType="Self.DiningTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DiningTab__Waite__2E1BDC42" Association="Self.FK__DiningTab__Waite__2E1BDC42">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="DiningTable" EntitySet="DiningTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__UserID__286302EC" Association="Self.FK__Employee__UserID__286302EC">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__35BCFE0A" Association="Self.FK__OrderDeta__Order__35BCFE0A">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Produ__36B12243" Association="Self.FK__OrderDeta__Produ__36B12243">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__TableID__31EC6D26" Association="Self.FK__Orders__TableID__31EC6D26">
+            <End Role="DiningTable" EntitySet="DiningTable" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="restaurantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DiningTable">
+          <Key>
+            <PropertyRef Name="TableID" />
+          </Key>
+          <Property Name="TableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="TableNumber" Type="Int32" />
+          <Property Name="AvailableSeats" Type="Int32" />
+          <Property Name="OccupiedSeats" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__DiningTab__Waite__2E1BDC42" FromRole="DiningTable" ToRole="Employee" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__TableID__31EC6D26" FromRole="DiningTable" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DiningTable" Relationship="Self.FK__DiningTab__Waite__2E1BDC42" FromRole="Employee" ToRole="DiningTable" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Employee__UserID__286302EC" FromRole="Employee" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderDeta__Order__35BCFE0A" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__Produ__36B12243" FromRole="OrderDetails" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableID" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalCost" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="DiningTable" Relationship="Self.FK__Orders__TableID__31EC6D26" FromRole="Orders" ToRole="DiningTable" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__35BCFE0A" FromRole="Orders" ToRole="OrderDetails" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="IsAvailable" Type="Boolean" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Produ__36B12243" FromRole="Product" ToRole="OrderDetails" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__UserID__286302EC" FromRole="Users" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK__DiningTab__Waite__2E1BDC42">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="DiningTable">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__TableID__31EC6D26">
+          <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiningTable">
+              <PropertyRef Name="TableID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__UserID__286302EC">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__35BCFE0A">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Produ__36B12243">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="restaurantEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DiningTable" EntityType="Self.DiningTable" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__DiningTab__Waite__2E1BDC42" Association="Self.FK__DiningTab__Waite__2E1BDC42">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="DiningTable" EntitySet="DiningTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__TableID__31EC6D26" Association="Self.FK__Orders__TableID__31EC6D26">
+            <End Role="DiningTable" EntitySet="DiningTable" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__UserID__286302EC" Association="Self.FK__Employee__UserID__286302EC">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__35BCFE0A" Association="Self.FK__OrderDeta__Order__35BCFE0A">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Produ__36B12243" Association="Self.FK__OrderDeta__Produ__36B12243">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="restaurantModelStoreContainer" CdmEntityContainer="restaurantEntities">
+          <EntitySetMapping Name="DiningTable">
+            <EntityTypeMapping TypeName="restaurantModel.DiningTable">
+              <MappingFragment StoreEntitySet="DiningTable">
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="TableNumber" ColumnName="TableNumber" />
+                <ScalarProperty Name="AvailableSeats" ColumnName="AvailableSeats" />
+                <ScalarProperty Name="OccupiedSeats" ColumnName="OccupiedSeats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="restaurantModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="restaurantModel.OrderDetails">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="restaurantModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="restaurantModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="restaurantModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

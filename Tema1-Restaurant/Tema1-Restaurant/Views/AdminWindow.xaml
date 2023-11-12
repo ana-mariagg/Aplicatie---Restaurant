@@ -1,0 +1,45 @@
+﻿<Window x:Class="Tema1_Restaurant.Views.AdminWindow"
+        x:Name="CurrentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tema1_Restaurant.Views"
+        xmlns:vm="clr-namespace:Tema1_Restaurant.ViewModels"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="482" Width="809">
+    <Window.DataContext>
+        <vm:AdminWindowVM/>
+    </Window.DataContext>
+    <Grid>
+        <DataGrid ItemsSource="{Binding CurrentList}" SelectedItem="{Binding CurrentItem}" Margin="0,0,200,202" SelectionChanged="DataGrid_SelectionChanged"/>
+       
+        <Button Content="View Employees" Command="{Binding ViewEmployeesCommand}" HorizontalAlignment="Left" Margin="107,279,0,0" VerticalAlignment="Top" Height="25" Width="118" RenderTransformOrigin="0.288,0.761"/>
+        <Button Content="Add Employees" Command="{Binding AddEmployeesCommand}" HorizontalAlignment="Left" Margin="107,325,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Modify Employees" Command="{Binding ModifyEmployeesCommand}" HorizontalAlignment="Left" Margin="107,368,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Delete Employees" Command="{Binding DeleteEmployeesCommand}" HorizontalAlignment="Left" Margin="107,407,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+
+        <Button Content="View Products" Command="{Binding ViewProductsCommand}" HorizontalAlignment="Left" Margin="252,279,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Add Products" Command="{Binding AddProductsCommand}" HorizontalAlignment="Left" Margin="252,325,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Modify Products" Command="{Binding ModifyProductCommand}" HorizontalAlignment="Left" Margin="252,368,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Delete Products" Command="{Binding DeleteProductsCommand}" HorizontalAlignment="Left" Margin="252,407,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+
+        <Button Content="View Tables" Command="{Binding ViewDiningTablesCommand}" HorizontalAlignment="Left" Margin="397,279,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Add Tables" Command="{Binding AddDiningTablesCommand}" HorizontalAlignment="Left" Margin="397,325,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Modify Tables" Command="{Binding ModifyDiningTablesCommand}" HorizontalAlignment="Left" Margin="397,368,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Delete Tables" Command="{Binding DeleteDiningTablesCommand}" HorizontalAlignment="Left" Margin="397,407,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+
+        <Button Content="View Orders" Command="{Binding ViewOrdersCommand}" HorizontalAlignment="Left" Margin="542,279,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Add Orders" Command="{Binding AddOrdersCommand}" HorizontalAlignment="Left" Margin="542,325,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Modify Orders" Command="{Binding ModifyOrderCommand}" HorizontalAlignment="Left" Margin="542,368,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Delete Orders" Command="{Binding DeleteOrderCommand}" HorizontalAlignment="Left" Margin="542,407,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+
+        <Button Content="Employee's Raport" Command="{Binding TotalOrderCommand}" HorizontalAlignment="Left" Margin="659,56,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Monthly Raport" Command="{Binding MontlyRaportCommand}" HorizontalAlignment="Left" Margin="659,120,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+        <Button Content="Daily Raport" Command="{Binding DailyRaportCommand}" HorizontalAlignment="Left" Margin="659,183,0,0" VerticalAlignment="Top" Height="25" Width="118"/>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="D:\user\Pictures\meniu.jpg" Stretch="UniformToFill" Opacity="0.9"/>
+        </Grid.Background>
+    </Grid>
+</Window>

@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="restaurantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DiningTable">
+    <Key>
+      <PropertyRef Name="TableID" />
+    </Key>
+    <Property Name="TableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="TableNumber" Type="Int32" />
+    <Property Name="AvailableSeats" Type="Int32" />
+    <Property Name="OccupiedSeats" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__DiningTab__Waite__2E1BDC42" FromRole="DiningTable" ToRole="Employee" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__TableID__31EC6D26" FromRole="DiningTable" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DiningTable" Relationship="Self.FK__DiningTab__Waite__2E1BDC42" FromRole="Employee" ToRole="DiningTable" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Employee__UserID__286302EC" FromRole="Employee" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="OrderDetailID" />
+    </Key>
+    <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__OrderDeta__Order__35BCFE0A" FromRole="OrderDetails" ToRole="Orders" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__Produ__36B12243" FromRole="OrderDetails" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableID" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TotalCost" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="DiningTable" Relationship="Self.FK__Orders__TableID__31EC6D26" FromRole="Orders" ToRole="DiningTable" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__35BCFE0A" FromRole="Orders" ToRole="OrderDetails" />
+    <Property Name="OrderDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="IsAvailable" Type="Boolean" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Produ__36B12243" FromRole="Product" ToRole="OrderDetails" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__UserID__286302EC" FromRole="Users" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK__DiningTab__Waite__2E1BDC42">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="DiningTable">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__TableID__31EC6D26">
+    <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DiningTable">
+        <PropertyRef Name="TableID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="TableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__UserID__286302EC">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Order__35BCFE0A">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Produ__36B12243">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="restaurantEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DiningTable" EntityType="Self.DiningTable" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK__DiningTab__Waite__2E1BDC42" Association="Self.FK__DiningTab__Waite__2E1BDC42">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="DiningTable" EntitySet="DiningTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__TableID__31EC6D26" Association="Self.FK__Orders__TableID__31EC6D26">
+      <End Role="DiningTable" EntitySet="DiningTable" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__UserID__286302EC" Association="Self.FK__Employee__UserID__286302EC">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Order__35BCFE0A" Association="Self.FK__OrderDeta__Order__35BCFE0A">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Produ__36B12243" Association="Self.FK__OrderDeta__Produ__36B12243">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

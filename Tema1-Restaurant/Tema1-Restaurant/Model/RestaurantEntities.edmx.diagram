@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="39b0698645e64a6ca20530f7ec70614b" Name="Diagram1">
+        <EntityTypeShape EntityType="restaurantModel.DiningTable" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="restaurantModel.Employee" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="restaurantModel.OrderDetails" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="restaurantModel.Orders" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="restaurantModel.Product" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="restaurantModel.Users" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="restaurantModel.FK__DiningTab__Waite__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="restaurantModel.FK__Orders__TableID__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="restaurantModel.FK__Employee__UserID__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="restaurantModel.FK__OrderDeta__Order__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="restaurantModel.FK__OrderDeta__Produ__36B12243" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

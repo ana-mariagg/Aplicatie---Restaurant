@@ -1,0 +1,29 @@
+﻿<Window x:Class="Tema1_Restaurant.Views.ModifyOrderWindow"
+        x:Name="CurrentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tema1_Restaurant.Views"
+        xmlns:vm="clr-namespace:Tema1_Restaurant.ViewModels"
+        mc:Ignorable="d"
+        Title="ModifyOrderWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:ModifyOrdersWindowVM/>
+    </Window.DataContext>
+    <Grid>
+        <Button Content="Modify Product" Command="{Binding ModifyOrderCommand}" CommandParameter="{Binding ElementName=CurrentWindow}" HorizontalAlignment="Left" Margin="400,302,0,0" VerticalAlignment="Top" Height="41" Width="96"/>
+        <TextBox HorizontalAlignment="Left" Margin="356,0,0,0" TextWrapping="Wrap" Text="{Binding TotalCost}" VerticalAlignment="Center" Width="175" Height="22"/>
+        <TextBox HorizontalAlignment="Left" Margin="357,161,0,0" TextWrapping="Wrap" Text="{Binding Status}" VerticalAlignment="Top" Width="175" Height="22"/>
+        <TextBox HorizontalAlignment="Left" Margin="356,113,0,0" TextWrapping="Wrap" Text="{Binding TableID}" VerticalAlignment="Top" Width="176" Height="22"/>
+        <Label Content="To modify an order, introduce its datas below" FontWeight="DemiBold" HorizontalContentAlignment="Center" FontSize="23" HorizontalAlignment="Center" Margin="0,38,0,0" VerticalAlignment="Top" Height="38" Width="528"/>
+        <Label Content="Table's ID:" FontStyle="Italic" FontWeight="SemiBold" HorizontalContentAlignment="Center" FontSize="15" HorizontalAlignment="Left" Margin="245,109,0,0" VerticalAlignment="Top"/>
+        <Label Content="Status:" FontStyle="Italic" FontWeight="SemiBold" HorizontalContentAlignment="Center" FontSize="15" HorizontalAlignment="Left" Margin="245,157,0,0" VerticalAlignment="Top"/>
+        <Label Content="Total cost:" FontStyle="Italic" FontWeight="SemiBold" HorizontalContentAlignment="Center" FontSize="15" HorizontalAlignment="Left" Margin="245,0,0,0" VerticalAlignment="Center"/>
+        <Label Content="Order's date:" FontStyle="Italic" FontWeight="SemiBold" HorizontalContentAlignment="Center" FontSize="15" HorizontalAlignment="Left" Margin="245,245,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding OrderTime}" Margin="357,248,0,0" VerticalAlignment="Top"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="D:\user\Pictures\employee.jpg" Stretch="UniformToFill" Opacity="0.9"/>
+        </Grid.Background>
+    </Grid>
+</Window>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="restaurantModelStoreContainer" CdmEntityContainer="restaurantEntities">
+    <EntitySetMapping Name="DiningTable">
+      <EntityTypeMapping TypeName="restaurantModel.DiningTable">
+        <MappingFragment StoreEntitySet="DiningTable">
+          <ScalarProperty Name="TableID" ColumnName="TableID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="TableNumber" ColumnName="TableNumber" />
+          <ScalarProperty Name="AvailableSeats" ColumnName="AvailableSeats" />
+          <ScalarProperty Name="OccupiedSeats" ColumnName="OccupiedSeats" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="restaurantModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="restaurantModel.OrderDetails">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="restaurantModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="TableID" ColumnName="TableID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="restaurantModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="restaurantModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FACB0C96-244C-4FA6-A339-73CCE6EEED3F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Tema1_Restaurant</RootNamespace>
+    <AssemblyName>Tema1-Restaurant</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="ViewModels\AddDiningTableWindowVM.cs" />
+    <Compile Include="ViewModels\AddEmployeeWindowVM.cs" />
+    <Compile Include="ViewModels\AddOrdersWindowVM.cs" />
+    <Compile Include="ViewModels\AddProductWindowVM.cs" />
+    <Compile Include="ViewModels\AdminWindowVM.cs" />
+    <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\DiningTableVM.cs" />
+    <Compile Include="ViewModels\EmployeeVM.cs" />
+    <Compile Include="ViewModels\LoginVM.cs" />
+    <Compile Include="ViewModels\ModifyDiningTableWindowVM.cs" />
+    <Compile Include="ViewModels\ModifyEmployeeWindowVM.cs" />
+    <Compile Include="ViewModels\ModifyOrderWindowVM.cs" />
+    <Compile Include="ViewModels\ModifyProductWindowVM.cs" />
+    <Compile Include="ViewModels\OrdersVM.cs" />
+    <Compile Include="ViewModels\ProductVM.cs" />
+    <Compile Include="ViewModels\SumVM.cs" />
+    <Compile Include="ViewModels\TotalOrderVM.cs" />
+    <Compile Include="ViewModels\UserVM.cs" />
+    <Compile Include="Views\AddDiningTableWindow.xaml.cs">
+      <DependentUpon>AddDiningTableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddEmployeeWindow.xaml.cs">
+      <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddOrderWindow.xaml.cs">
+      <DependentUpon>AddOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddProductWindow.xaml.cs">
+      <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeeWindow.xaml.cs">
+      <DependentUpon>EmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\ModifyDiningTableWindow.xaml.cs">
+      <DependentUpon>ModifyDiningTableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyEmployeeWindow.xaml.cs">
+      <DependentUpon>ModifyEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyOrderWindow.xaml.cs">
+      <DependentUpon>ModifyOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyProductWindow.xaml.cs">
+      <DependentUpon>ModifyProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TotalRaportWindow.xaml.cs">
+      <DependentUpon>TotalRaportWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AddDiningTableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyDiningTableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TotalRaportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\BusinessLogicLayer\BaseBLL.cs" />
+    <Compile Include="Model\BusinessLogicLayer\DiningTableBLL.cs" />
+    <Compile Include="Model\BusinessLogicLayer\EmployeeBLL.cs" />
+    <Compile Include="Model\BusinessLogicLayer\OrderBLL.cs" />
+    <Compile Include="Model\BusinessLogicLayer\ProductBLL.cs" />
+    <Compile Include="Model\BusinessLogicLayer\UserBLL.cs" />
+    <Compile Include="Model\DiningTable.cs">
+      <DependentUpon>RestaurantEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Employee.cs">
+      <DependentUpon>RestaurantEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OrderDetails.cs">
+      <DependentUpon>RestaurantEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Orders.cs">
+      <DependentUpon>RestaurantEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Product.cs">
+      <DependentUpon>RestaurantEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RestaurantEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RestaurantEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RestaurantEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Users.cs">
+      <DependentUpon>RestaurantEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model\RestaurantEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RestaurantEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\RestaurantEntities.edmx.diagram">
+      <DependentUpon>RestaurantEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\RestaurantEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestaurantEntities.edmx</DependentUpon>
+      <LastGenOutput>RestaurantEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\RestaurantEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestaurantEntities.edmx</DependentUpon>
+      <LastGenOutput>RestaurantEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

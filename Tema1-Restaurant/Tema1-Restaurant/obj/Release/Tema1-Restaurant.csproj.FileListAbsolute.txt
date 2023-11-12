@@ -1,0 +1,14 @@
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Tema1-Restaurant.csproj.AssemblyReference.cache
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Views\AddDiningTableWindow.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Views\AddEmployeeWindow.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Views\AddOrderWindow.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Views\AddProductWindow.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Views\AdminWindow.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Views\LoginWindow.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Views\ModifyDiningTableWindow.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Views\ModifyEmployeeWindow.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\App.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Tema1-Restaurant_Content.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Tema1-Restaurant_MarkupCompile.cache
+D:\facultate\facultate-anul2\MVP\Tema1-Restaurant\Tema1-Restaurant\obj\Release\Tema1-Restaurant_MarkupCompile.lref
